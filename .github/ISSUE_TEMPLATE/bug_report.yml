@@ -1,0 +1,32 @@
+name: Bug report
+description: Use this template to report a bug in SITO.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the details below.
+  - type: input
+    id: issue_title
+    attributes:
+      label: Summary
+      description: Short summary of the bug
+      placeholder: "Example: Crash when opening plugin in Ableton"
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Describe the exact steps to reproduce the bug.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, host, plugin format, build type, etc.

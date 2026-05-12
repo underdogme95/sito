@@ -126,8 +126,8 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/source FILES ${SourceFiles})
 # =========================
 # Tests & Benchmarks
 # =========================
-# Uncomment to enable tests and benchmarks
-# include(Tests)
+# Enable tests for CI and local validation
+include(Tests)
 # include(Benchmarks)
 
 # =========================

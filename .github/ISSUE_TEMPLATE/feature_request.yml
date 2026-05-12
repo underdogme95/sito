@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a new feature or enhancement for SITO.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the feature you would like to see.
+  - type: input
+    id: issue_title
+    attributes:
+      label: Summary
+      description: Short title for the feature request
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why is this feature useful?
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Proposed solution
+  - type: input
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Optional
