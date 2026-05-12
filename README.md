@@ -1,6 +1,17 @@
 # SITO
+![SITO](assets\images\gh_banner.svg)
 
-SITO is a JUCE-based audio synthesizer plugin built from the Pamplejuce template. It targets VST3, Standalone, and CLAP formats and is configured to build with CMake.
+SITO is a JUCE-based granular synthesizer plugin built from the Pamplejuce template. It targets VST3, Standalone, and CLAP formats and is configured to build with CMake.
+
+## Table of Contents
+
+- [Project status](#project-status)
+- [Supported output formats](#supported-output-formats)
+- [Requirements](#requirements)
+- [Getting started](#getting-started)
+- [GitHub Actions](#github-actions)
+- [Notes](#notes)
+- [Contributing](#contributing)
 
 ## Project status
 
