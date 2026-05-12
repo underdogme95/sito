@@ -58,6 +58,7 @@ private:
     uint64_t lastSeenSampleGeneration = 0;
     Page currentPage = Page::sample;
     int selectedModulationTarget = 0;
+    bool isSyncingPageUi = false;
     bool isSyncingModulationUi = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)

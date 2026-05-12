@@ -98,7 +98,7 @@ juce::ValueTree makePageButton (const juce::String& id, const juce::String& text
     auto button = makeButton (id, text);
     button.setProperty ("class", "nav-button", nullptr);
     button.setProperty ("toggleable", true, nullptr);
-    button.setProperty ("toggle-on-click", false, nullptr);
+    button.setProperty ("toggle-on-click", true, nullptr);
     button.setProperty ("toggled", toggled, nullptr);
     button.setProperty ("width", 126, nullptr);
     return button;
@@ -199,6 +199,25 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
             currentPage = Page::settings;
             syncPageVisibility();
         };
+    }
+
+    if (rootComponent != nullptr)
+    {
+        auto bindPageButton = [this] (const juce::String& buttonID, Page page)
+        {
+            if (auto* component = rootComponent->findChildWithID (buttonID))
+                if (auto* button = dynamic_cast<juce::Button*> (component))
+                    button->onClick = [this, page]
+                    {
+                        currentPage = page;
+                        syncPageVisibility();
+                    };
+        };
+
+        bindPageButton ("page-sample-button", Page::sample);
+        bindPageButton ("page-modulation-button", Page::modulation);
+        bindPageButton ("page-envelope-button", Page::envelope);
+        bindPageButton ("page-settings-button", Page::settings);
     }
 
     syncPageVisibility();
@@ -494,7 +513,7 @@ juce::ValueTree AudioPluginAudioProcessorEditor::createEditorView()
                     { "padding", 12 },
                     { "flex-grow", 1.0 },
                     { "gap", 10 },
-                    { "visible", false },
+                    { "visibility", false },
                 },
                 {
                     juce::ValueTree {
@@ -586,7 +605,7 @@ juce::ValueTree AudioPluginAudioProcessorEditor::createEditorView()
                     { "padding", 12 },
                     { "flex-grow", 1.0 },
                     { "gap", 10 },
-                    { "visible", false },
+                    { "visibility", false },
                 },
                 {
                     juce::ValueTree {
@@ -637,7 +656,7 @@ juce::ValueTree AudioPluginAudioProcessorEditor::createEditorView()
                     { "padding", 12 },
                     { "flex-grow", 1.0 },
                     { "gap", 10 },
-                    { "visible", false },
+                    { "visibility", false },
                 },
                 {
                     juce::ValueTree {
@@ -838,6 +857,8 @@ void AudioPluginAudioProcessorEditor::updateSampleStatus()
 
 void AudioPluginAudioProcessorEditor::syncPageVisibility()
 {
+    const juce::ScopedValueSetter<bool> syncing (isSyncingPageUi, true);
+
     auto setPageState = [this] (const juce::String& pageID,
                                 const juce::String& buttonID,
                                 Page page,
@@ -845,7 +866,17 @@ void AudioPluginAudioProcessorEditor::syncPageVisibility()
                                 const juce::String& border)
     {
         if (auto pageNode = findNodeWithID (editorView, pageID); pageNode.isValid())
-            pageNode.setProperty ("visible", currentPage == page, nullptr);
+        {
+            const auto active = currentPage == page;
+            pageNode.setProperty ("visibility", active, nullptr);
+            pageNode.setProperty ("flex-grow", active ? 1.0 : 0.0, nullptr);
+            pageNode.setProperty ("padding", active ? 12 : 0, nullptr);
+
+            if (active)
+                pageNode.removeProperty ("height", nullptr);
+            else
+                pageNode.setProperty ("height", 0, nullptr);
+        }
 
         if (auto buttonNode = findNodeWithID (editorView, buttonID); buttonNode.isValid())
         {
@@ -909,6 +940,33 @@ void AudioPluginAudioProcessorEditor::timerCallback()
 void AudioPluginAudioProcessorEditor::valueTreePropertyChanged (juce::ValueTree& treeWhosePropertyHasChanged,
                                                                 const juce::Identifier& property)
 {
+    if (! isSyncingPageUi && property == juce::Identifier { "toggled" })
+    {
+        const auto id = treeWhosePropertyHasChanged.getProperty ("id").toString();
+        const auto toggled = static_cast<bool> (treeWhosePropertyHasChanged.getProperty ("toggled", false));
+
+        if (toggled)
+        {
+            bool handledPageNav = true;
+
+            if (id == "page-sample-button")
+                currentPage = Page::sample;
+            else if (id == "page-modulation-button")
+                currentPage = Page::modulation;
+            else if (id == "page-envelope-button")
+                currentPage = Page::envelope;
+            else if (id == "page-settings-button")
+                currentPage = Page::settings;
+            else
+                handledPageNav = false;
+
+            if (handledPageNav)
+            {
+                syncPageVisibility();
+                return;
+            }
+        }
+    }
     if (isSyncingModulationUi)
         return;
 
