@@ -1,8 +1,8 @@
 # SITO
 ![SITO](assets\images\gh_banner.svg)
 
-![Build & Test](https://img.shields.io/github/actions/workflow/status/u95/sito/build_and_test.yml)
-![License: MIT](https://img.shields.io/github/license/u95/sito)
+![Build & Test](https://img.shields.io/github/actions/workflow/status/underdogme95/sito/build_and_test.yml)
+![License: MIT](https://img.shields.io/github/license/underdogme95/sito)
 ![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-blue.svg)
 
 SITO is a JUCE-based granular synthesizer plugin built from the Pamplejuce template. It targets VST3 and Standalone formats and is configured to build with CMake.
