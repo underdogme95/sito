@@ -20,7 +20,7 @@ set(PROJECT_NAME "SITO")
 set(PRODUCT_NAME "SITO")
 set(COMPANY_NAME "u95")
 set(BUNDLE_ID "com.u95.sito")
-set(FORMATS VST3 Standalone CLAP)
+set(FORMATS VST3)
 
 project(${PROJECT_NAME} VERSION ${CURRENT_VERSION})
 
@@ -32,7 +32,6 @@ include(PamplejuceLog)
 # Dependencies
 # =========================
 add_subdirectory(JUCE)
-add_subdirectory(modules/clap-juce-extensions EXCLUDE_FROM_ALL)
 add_subdirectory(modules/melatonin_inspector)
 
 # =========================
@@ -49,11 +48,6 @@ juce_add_plugin("${PROJECT_NAME}"
     NEEDS_MIDI_INPUT TRUE
     FORMATS "${FORMATS}"
     PRODUCT_NAME "${PRODUCT_NAME}"
-)
-
-clap_juce_extensions_plugin(TARGET "${PROJECT_NAME}"
-    CLAP_ID "${BUNDLE_ID}"
-    CLAP_FEATURES instrument
 )
 
 # =========================

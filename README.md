@@ -4,7 +4,7 @@
 SITO is a JUCE-based granular synthesizer plugin built from the Pamplejuce template. It targets VST3, Standalone, and CLAP formats and is configured to build with CMake.
 
 ## Table of Contents
-
+### Technical moments
 - [Project status](#project-status)
 - [Supported output formats](#supported-output-formats)
 - [Requirements](#requirements)
@@ -12,6 +12,10 @@ SITO is a JUCE-based granular synthesizer plugin built from the Pamplejuce templ
 - [GitHub Actions](#github-actions)
 - [Notes](#notes)
 - [Contributing](#contributing)
+### Behind the scenes and my thoughts
+- [Backstory](#backstory)
+- [Features](#features)
+- [Roadmap](#roadmap)
 
 ## Project status
 
@@ -76,10 +80,16 @@ It builds, tests, and validates the project on Linux, macOS, and Windows.
 
 ## Notes
 
-- The plugin uses JUCE and `clap-juce-extensions` as submodules.
+- The plugin uses JUCE as a submodule.
 - Packaging and notarization are not required for open-source source validation.
 - If you want release artifacts, configure signing secrets and update the workflow accordingly.
 
 ## Contributing
 
 See `CONTRIBUTING.md` for contribution guidelines.
+
+## Backstory
+
+## Features
+
+## Roadmap
