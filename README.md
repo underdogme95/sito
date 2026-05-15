@@ -1,11 +1,11 @@
 # SITO
 ![SITO](assets/images/gh_banner.svg)
 
-![Build & Test](https://img.shields.io/github/actions/workflow/status/underdogme95/sito/build_and_test.yml)
-![JUCE](https://img.shields.io/badge/Framework-JUCE-3C64B0)
-![CMake](https://img.shields.io/badge/Build%20System-CMake-6D6D6D)
-![License: MIT](https://img.shields.io/github/license/underdogme95/sito)
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-blue.svg)
+[![download](https://img.shields.io/github/v/release/underdogme95/sito?style=flat&color=673AB7)](https://github.com/underdogme95/sito/releases/latest)
+![build](https://img.shields.io/github/actions/workflow/status/underdogme95/sito/build_and_test.yml?style=flat&color=7E57C2)
+![juce](https://img.shields.io/badge/juce-framework-9575CD?style=flat)
+![cmake](https://img.shields.io/badge/cmake-build-B39DDB?style=flat)
+![license](https://img.shields.io/github/license/underdogme95/sito?style=flat&color=7E57C2)
 
 SITO is a JUCE-based granular synthesizer plugin built with AI.
 
