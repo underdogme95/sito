@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 10 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   nightly:
     uses: ./.github/workflows/build_and_test.yml
